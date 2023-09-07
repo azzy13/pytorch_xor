@@ -66,16 +66,19 @@ def train_xor_network():
             print(name, param.data)
 
     # Test input
-    input = torch.tensor([0.0, 1.0])
-    print("For inputs", input)
-    out = xor_network(input)
-    # Convert to string
-    output = out.detach().numpy()
-    string = np.array2string(output, precision=0)
-    print(string)
+    all_out = ""
+    for p in [[0.0, 0.0], [1.0, 0.0], [0.0, 1.0], [1.0, 1.0]]:
+        inp = torch.tensor(p)
+        print("For inputs", inp)
+        out = xor_network(inp)
+        # Convert to string
+        out1 = out.detach().numpy()
+        str = np.array2string(out1, precision=0)
+        all_out += str
+        print(str)
 
     # Return the string data to be passed to timer_callback
-    return string
+    return all_out
 
 
 def main(args=None):
