@@ -20,7 +20,7 @@ setup(
     entry_points={
         "console_scripts": [
             "torch = pytorch_xor.demo_pytorch:main",
-            "talker = pytorch_xor.publisher_member_function:main",
+            "activate = pytorch_xor.publisher_member_function:main",
             "listener = pytorch_xor.subscriber_member_function:main",
         ],
     },

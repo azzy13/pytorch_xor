@@ -9,9 +9,9 @@ from rclpy.node import Node
 from std_msgs.msg import String
 
 
-class MinimalPublisher(Node):
+class Publisher(Node):
     def __init__(self):
-        super().__init__("minimal_publisher")
+        super().__init__("node")
         self.publisher_ = self.create_publisher(String, "topic", 10)
         timer_period = 0.5  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
@@ -83,20 +83,20 @@ def train_xor_network():
 
 def main(args=None):
     rclpy.init(args=args)
-    minimal_publisher = MinimalPublisher()
+    node = Publisher()
 
     # Call the function to train the XOR network and get the string data
     string_data = train_xor_network()
 
     # Pass the string data to the timer_callback
-    minimal_publisher.string_data = string_data
+    node.string_data = string_data
 
-    rclpy.spin(minimal_publisher)
+    rclpy.spin(node)
 
     # Destroy the node explicitly
     # (optional - otherwise it will be done automatically
     # when the garbage collector destroys the node object)
-    minimal_publisher.destroy_node()
+    node.destroy_node()
     rclpy.shutdown()
 
 
